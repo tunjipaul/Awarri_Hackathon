@@ -181,5 +181,9 @@ For issues, questions, or contributions, please contact Team Sabilaw or open an 
 
 **Preview:**
 
-![]()
+![main page](https://github.com/user-attachments/assets/56beef8a-9369-4c00-bcb4-290bc0f49ddc)
+![login page](https://github.com/user-attachments/assets/914c4218-a979-4a30-9388-554e5cd64e4c)
+![sign up page](https://github.com/user-attachments/assets/2ecd91d2-f893-43b1-add7-8c10b0d68096)
+![chatbot page](https://github.com/user-attachments/assets/a1979b9e-6637-48a6-8c4a-2a094a7e6bc8)
+
 
