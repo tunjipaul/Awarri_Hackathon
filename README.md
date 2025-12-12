@@ -1,182 +1,242 @@
-# CivicAccess
+# CivicAccess - Multilingual Legal Chatbot
+
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
 
 A multilingual legal chatbot that bridges the gap between complex Nigerian laws and everyday citizens. CivicAccess references the 1999 Nigerian Constitution, the Nigerian Police Act, and Lagos State Tenancy Laws, providing accessible legal information in multiple languages.
 
-## Project Overview
+## 📋 Table of Contents
 
-CivicAccess is a full-stack application built for the Awarri Hackathon by Team Sabilaw. It combines a powerful backend API with an intuitive React frontend to deliver legal information in English, Hausa, Igbo, Yoruba, and Pidgin.
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Repository Structure
+## 🎯 Project Overview
 
-```
-CivicAccess/
-├── civicaccess/                 # React-based user interface
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── README.md            # Frontend-specific documentation
-├── backend/                  # API server and LLM integration
-│   ├── app/
-│   ├── config/
-│   ├── requirements.txt
-│   └── README.md            # Backend-specific documentation
-├── .gitignore
-└── README.md                # This file
-```
+CivicAccess is a full-stack application built for the Awarri Hackathon by **Team Sabilaw**. It combines a powerful backend API with an intuitive React frontend to deliver legal information in multiple languages, making Nigerian legal systems more accessible to everyday citizens.
 
-## Technology Stack
+**Key Objectives:**
+- Simplify complex legal information
+- Provide multilingual support
+- Enable easy access to constitutional and statutory laws
+- Support informed decision-making on legal matters
 
-### Frontend
-- React 18
-- Tailwind CSS
-- Lucide React Icons
-- JavaScript (ES6+)
+## ✨ Features
 
-### Backend
-- Python
-- FastAPI
-- LLM Integration
-- Database (Tursoo DB)
-
-## Quick Start
-
-### Prerequisites
-
-- Node.js (v14+) and npm
-- Python (v3.8+) and pip
-- Git
-
-### Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-The frontend will run at `http://localhost:5173`
-
-### Backend Setup
-
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python app.py
-```
-
-The backend will run at `http://localhost:8000` (or your configured port)
-
-## Features
-
-### Legal Information Access
+### 📚 Legal Information Access
 - 1999 Nigerian Constitution (as amended)
 - Nigerian Police Act 2020
 - Lagos State Tenancy Laws
 - Fundamental Human Rights
 
-### Multilingual Support
+### 🌍 Multilingual Support
 - English
 - Hausa
 - Igbo
 - Yoruba
-- Pidgin
+- Pidgin English
 
-### User Features
-- Real-time chat interface
-- Language selection and switching
-- User authentication
-- Session management
+### 👤 User Features
+- Real-time chat interface with AI-powered responses
+- Language selection and instant switching
+- Secure user authentication & session management
 - Responsive mobile-friendly design
+- User profile management
 
+## 🛠️ Technology Stack
 
-## Project Structure Details
+### Frontend
+- **React 18** - Modern UI framework
+- **Tailwind CSS** - Utility-first styling
+- **Vite** - Fast build tool
+- **React Router** - Client-side routing
+- **Lucide React** - Icon library
+- **JavaScript (ES6+)** - Programming language
 
-### Frontend (`/frontend`)
-Contains all React components, pages, and styling:
-- Chat interface
-- Language selector
-- Authentication screens
-- Footer with legal information
-- Responsive layouts
+### Backend
+- **Python 3.8+** - Server language
+- **FastAPI** - High-performance web framework
+- **SQLAlchemy** - ORM for database management
+- **LibSQL** - Lightweight database
+- **JWT** - Secure authentication
+- **Pydantic** - Data validation
 
-### Backend (`/backend`)
-Contains the API server and AI integration:
-- RESTful API endpoints
-- LLM integration for legal queries
-- Database models and migrations
-- Authentication and authorization
-- Text processing and translation
+## 🚀 Quick Start
 
-## API Endpoints
+### Prerequisites
 
-For a complete list of backend endpoints, refer to the [Backend README](./backend/README.md).
+- **Node.js** (v14+) and npm
+- **Python** (v3.8+) and pip
+- **Git**
 
-Example endpoints:
-- `POST /api/chat` - Send a message and get legal information
-- `GET /api/languages` - Get available languages
-- `POST /api/auth/login` - User authentication
-- `GET /api/constitution` - Fetch Constitution information
+### Installation & Setup
 
-## Environment Variables
-
-### Frontend (.env.local)
+#### 1. Clone the Repository
+```bash
+git clone https://github.com/Team-Sabilaw/CivicAccess.git
+cd CivicAccess
 ```
-REACT_APP_API_URL=http://localhost:5000
-REACT_APP_API_KEY=your_api_key
+
+#### 2. Backend Setup
+
+```bash
+cd Civic_Access/backend
+
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your configuration
+
+# Run the server
+uvicorn app:app --reload
 ```
+
+Backend will run at `http://localhost:8000`
+
+#### 3. Frontend Setup
+
+```bash
+cd Civic_Access/CivicAccess
+
+# Install dependencies
+npm install
+
+# Create environment variables file
+cp .env.example .env.local
+# Edit .env.local with your backend URL
+
+# Start development server
+npm run dev
+```
+
+Frontend will run at `http://localhost:5173`
+
+## 📁 Project Structure
+
+```
+Civic_Access/
+├── backend/                          # FastAPI server
+│   ├── app.py                        # Main application
+│   ├── database.py                   # Database setup
+│   ├── models.py                     # Data models
+│   ├── requirements.txt              # Python dependencies
+│   ├── routes/                       # API routes
+│   │   └── auth.py                   # Authentication endpoints
+│   ├── myenv/                        # Virtual environment
+│   └── README.md                     # Backend documentation
+│
+├── CivicAccess/                      # React frontend
+│   ├── src/
+│   │   ├── components/               # Reusable components
+│   │   ├── pages/                    # Page components
+│   │   │   ├── Login.jsx
+│   │   │   ├── SignUp.jsx
+│   │   │   ├── Chatbot.jsx
+│   │   │   └── LanguageSelection.jsx
+│   │   ├── App.jsx                   # Main app component
+│   │   ├── App.css                   # Global styles
+│   │   ├── main.jsx                  # Entry point
+│   │   └── index.css                 # Base styles
+│   ├── public/                       # Static assets
+│   ├── package.json                  # Dependencies
+│   ├── vite.config.js                # Vite configuration
+│   ├── eslint.config.js              # Linting rules
+│   ├── index.html                    # HTML template
+│   └── README.md                     # Frontend documentation
+│
+└── README.md                         # This file
+```
+
+## 📖 Documentation
+
+For detailed documentation on specific parts:
+
+- **[Backend Documentation](./Civic_Access/backend/README.md)** - API endpoints, database schema, authentication
+- **[Frontend Documentation](./Civic_Access/CivicAccess/README.md)** - Components, styling, deployment
+
+## 🌐 API Endpoints
+
+Key backend endpoints (see [Backend README](./Civic_Access/backend/README.md) for complete documentation):
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Health check |
+| POST | `/auth/login` | User login |
+| POST | `/auth/register` | User registration |
+| POST | `/auth/logout` | User logout |
+
+## ⚙️ Environment Variables
 
 ### Backend (.env)
+```env
+DATABASE_URL=your_libsql_database_url
+SECRET_KEY=your_jwt_secret_key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
-DATABASE_URL=your_database_url
-LLM_API_KEY=your_llm_api_key
-SECRET_KEY=your_secret_key
+
+### Frontend (.env.local)
+```env
+VITE_BACKEND_URL=http://localhost:8000
+VITE_API_KEY=your_api_key
 ```
 
-## Getting Help
+## 🤝 Contributing
 
-- Check the individual README files in `/frontend` and `/backend`
-- Review the code comments and documentation
-- Open an issue on the GitHub repository
+We welcome contributions! Here's how to get started:
 
-## Contributing
+1. **Fork** the repository
+2. **Create a feature branch** (`git checkout -b feature/AmazingFeature`)
+3. **Make your changes** and commit (`git commit -m 'Add AmazingFeature'`)
+4. **Push to your branch** (`git push origin feature/AmazingFeature`)
+5. **Open a Pull Request**
 
-1. Create a feature branch (`git checkout -b feature/YourFeature`)
-2. Make your changes in either frontend or backend
-3. Commit your changes (`git commit -m 'Add YourFeature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Open a Pull Request
-6. For heaven's sake don't push to main branch, thanks.
+### Guidelines
+- Do **not** push directly to the main branch
+- Ensure code follows project conventions
+- Write meaningful commit messages
+- Update documentation as needed
 
-## Legal Disclaimer
+## 🔒 Legal Disclaimer
 
-CivicAccess provides legal information, not professional legal advice. Every translation is subject to interpretation. Users must consult qualified legal professionals for specific legal matters. Terms and conditions apply.
+**Important:** CivicAccess provides legal information for educational and informational purposes only. It does **not** constitute professional legal advice. Every translation is subject to interpretation. Users must consult with qualified legal professionals for specific legal matters or advice.
 
-## Team & Credits
+## 👥 Team & Credits
 
-**Developed by**: Team Sabilaw  
-**Event**: Awarri Hackathon  
-**Year**: 2024-2025
+- **Developed by:** Team Sabilaw
+- **Event:** Awarri Hackathon
+- **Year:** 2024-2025
+- **Built with:** React, FastAPI, and ❤️
 
-## License
+## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE) file for details.
 
-## Deployment
+## 📞 Support & Contact
 
-For production deployment instructions:
-- Frontend: See [Frontend README](./frontend/README.md)
-- Backend: See [Backend README](./backend/README.md)
-
-## Support
-
-For questions or issues:
-- Create an issue in the repository
+For questions, issues, or suggestions:
+- Open an [Issue](https://github.com/Team-Sabilaw/CivicAccess/issues) on GitHub
 - Contact Team Sabilaw
-- Check existing documentation
+- Check the [Wiki](https://github.com/Team-Sabilaw/CivicAccess/wiki) for FAQs
 
 ---
 
-**Last Updated**: December 2025  
-**Version**: 1.0.0
+**Last Updated:** December 2025  
+**Version:** 1.0.0  
+**Status:** Active Development
