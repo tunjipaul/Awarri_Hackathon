@@ -15,7 +15,7 @@ const Footer = () => {
             onMouseLeave={() => setShowDetails(false)}
           >
             <p className="text-[10px] text-gray-500 hover:underline">
-              © {currentYear} CivicAccess. Built by <span className="text-green-600 font-medium">Team Sabilaw</span> for Awarri Hackathon.
+              &copy; {currentYear} CivicAccess. Built by <span className="text-green-600 font-medium">Team Sabilaw</span> for Awarri Hackathon.
             </p>
             {showDetails && (
               <div className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 bg-white border border-gray-300 rounded-lg shadow-lg p-4 w-80 z-50">
