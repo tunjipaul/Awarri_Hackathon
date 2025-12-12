@@ -1,2 +1,8 @@
 .env
 civic_access.db
+local.db
+__pycache__/
+# 2. SQLite/LibSQL temporary files (essential to ignore)
+local.db-shm
+local.db-wal
+local.db-info
