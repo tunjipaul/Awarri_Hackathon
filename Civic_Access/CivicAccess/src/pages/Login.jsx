@@ -14,6 +14,8 @@ const translations = {
     error: "Login failed. Please check your credentials.",
     forgotPassword: "Forgot Password?",
     loginMessage: "Login to your CivicAccess account",
+    errorfield: "All fields cannot be empty!",
+    networkError: "Network error. Please try again.",
   },
   ha: {
     login: "Sannu da zagaye",
@@ -26,6 +28,8 @@ const translations = {
     error: "Shiga bai yi nasara ba.",
     forgotPassword: "Manta Kalmar sirri?",
     loginMessage: "Shiga cikin asusun CivicAccess ɗinku",
+    errorfield: "ba za a iya barin filayen komai ba!",
+    networkError: "Kuskuren hanyar sadarwa. Da fatan za a sake gwadawa.",
   },
   ig: {
     login: "Nnoo azụ",
@@ -38,6 +42,8 @@ const translations = {
     error: "Ibata adịghị ezi.",
     forgotPassword: "I Chefuo Okwu ichebe?",
     loginMessage: "Banye na akaụntụ CivicAccess gị",
+    errorfield: "Enweghị ike ịhapụ ubi ọ bụla efu!",
+    networkError: "Njehie netwọkụ. Biko nwaa ọzọ.",
   },
   yo: {
     login: "Kaabo pada",
@@ -50,6 +56,8 @@ const translations = {
     error: "Wiwole kò rọ́pọ̀.",
     forgotPassword: "Gbagbe Awo-ọrọ?",
     loginMessage: "Wọle si àkọọlẹ CivicAccess rẹ",
+    errorfield: "Ko le fi gbogbo awọn aaye silẹ ṣofo!",
+    networkError: "Aṣiṣe nẹtiwọọki. Jọwọ gbiyanju lẹẹkansi.",
   },
   pid: {
     login: "Welcome Back",
@@ -62,6 +70,8 @@ const translations = {
     error: "Login no work. Check your email and password.",
     forgotPassword: "You been Forget Password?",
     loginMessage: "Login for your CivicAccess account.",
+    errorfield: "You not fit leave any field empty!",
+    networkError: "Network wahala. Abeg try again.",
   },
 };
 
@@ -85,7 +95,7 @@ function Login() {
     setError("");
 
     if (!email || !password) {
-      setError("All fields cannot be empty!");
+      setError(t.errorfield);
       return;
     }
 
@@ -109,7 +119,7 @@ function Login() {
       }
     } catch (err) {
       console.error("Login error:", err);
-      setError("Network error. Please try again.");
+      setError(t.networkError);
     } finally {
       setLoading(false);
     }
