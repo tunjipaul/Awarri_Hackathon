@@ -5,7 +5,6 @@ import Login from "./pages/Login";
 import Chatbot from "./pages/Chatbot";
 import ForgotPassword from "./pages/ForgotPassword";
 
-// Protected Route Component
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
 

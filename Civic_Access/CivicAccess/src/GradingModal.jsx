@@ -2,7 +2,6 @@ import { useEffect, useCallback } from "react";
 import { X } from "lucide-react";
 
 function GradingModal({ message, isOpen, onClose }) {
-  // Use useCallback for memoizing color and label functions
   const getScoreColor = useCallback((score) => {
     if (score === null || isNaN(score)) return "bg-gray-100 border-gray-300";
     if (score >= 90) return "bg-green-100 border-green-300";
@@ -24,7 +23,6 @@ function GradingModal({ message, isOpen, onClose }) {
     return "Needs Improvement";
   }, []);
 
-  // Calculate score once, handling null/NaN gracefully
   const score = message
     ? message.judge_score !== null
       ? message.judge_score
@@ -34,12 +32,10 @@ function GradingModal({ message, isOpen, onClose }) {
     ? message.judge_reason || "No evaluation reason provided."
     : "No evaluation reason provided.";
 
-  // Extract translated query
   const translatedQuery = message
     ? message.translatedQuery || message.text
     : "N/A";
 
-  // --- Accessibility Improvement (Close on Escape) ---
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
@@ -55,7 +51,6 @@ function GradingModal({ message, isOpen, onClose }) {
       document.removeEventListener("keydown", handleEscape);
     };
   }, [isOpen, onClose]);
-  // ----------------------------------------------------
 
   if (!isOpen || !message) return null;
 
@@ -68,12 +63,11 @@ function GradingModal({ message, isOpen, onClose }) {
         className={`bg-white rounded-lg shadow-xl max-w-md w-full transform transition-all ${getScoreColor(
           score
         )} border-2`}
-        role="dialog" // ARIA role for modal
-        aria-modal="true" // Indicate it's a modal
+        role="dialog"
+        aria-modal="true"
         aria-labelledby="modal-title"
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <h2 id="modal-title" className="text-xl font-bold text-gray-800">
             Response Evaluation
@@ -87,7 +81,6 @@ function GradingModal({ message, isOpen, onClose }) {
           </button>
         </div>
 
-        {/* --- NEW: Translated Query Display --- */}
         {message.translatedQuery &&
           message.translatedQuery !== message.text && (
             <div className="bg-gray-50 p-6 border-b border-gray-200">
@@ -99,11 +92,8 @@ function GradingModal({ message, isOpen, onClose }) {
               </p>
             </div>
           )}
-        {/* --- END NEW --- */}
 
-        {/* Content */}
         <div className="p-6 space-y-6">
-          {/* Score Badge */}
           <div className="flex items-center gap-4">
             <div
               className={`${getScoreBadgeColor(
@@ -120,7 +110,6 @@ function GradingModal({ message, isOpen, onClose }) {
             </div>
           </div>
 
-          {/* Reason */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Evaluation Reason
@@ -136,7 +125,6 @@ function GradingModal({ message, isOpen, onClose }) {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="bg-gray-50 px-6 py-4 rounded-b-lg border-t border-gray-200">
           <button
             onClick={onClose}

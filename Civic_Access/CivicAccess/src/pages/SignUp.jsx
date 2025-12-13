@@ -98,7 +98,7 @@ function SignUp() {
     }
 
     setLoading(true);
-    const apiUrl = import.meta.env.VITE_BACKEND_URL;
+    const apiUrl = import.meta.env.VITE_AUTH_URL;
 
     try {
       const response = await fetch(`${apiUrl}/auth/signup`, {
@@ -115,7 +115,7 @@ function SignUp() {
       const data = await response.json();
 
       if (response.ok) {
-        // Signup successful - redirect to login with email
+        
         navigate("/login", { 
           state: { 
             email: email,
@@ -135,7 +135,7 @@ function SignUp() {
 
   return (
     <div className="flex flex-col min-h-screen bg-linear-to-b from-green-50 to-white">
-      {/* Header - Made responsive */}
+      
       <header className="bg-green-600 text-white p-4 sm:p-5">
         <button
           onClick={() => navigate("/")}
@@ -146,10 +146,10 @@ function SignUp() {
         </button>
       </header>
 
-      {/* Main Content - Made responsive */}
+    
       <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-md mx-auto">
-          {/* Logo & Title Section - Made responsive */}
+         
           <div className="text-center mb-6 sm:mb-8 md:mb-10">
             <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-green-100 rounded-full mb-3 sm:mb-4">
               <svg
@@ -169,16 +169,16 @@ function SignUp() {
             </p>
           </div>
 
-          {/* Form Container - Made responsive */}
+         
           <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-5">
-            {/* Error Message - Made responsive */}
+          
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-800 px-3 py-2 sm:px-4 sm:py-3 rounded-lg text-xs sm:text-sm">
                 {error}
               </div>
             )}
 
-            {/* Email Field - Made responsive */}
+            
             <div>
               <label className="block text-sm sm:text-base font-semibold text-gray-700 mb-2">
                 {t.email}
@@ -193,7 +193,7 @@ function SignUp() {
               />
             </div>
 
-            {/* Password Field - Made responsive */}
+            
             <div>
               <label className="block text-sm sm:text-base font-semibold text-gray-700 mb-2">
                 {t.password}{" "}
@@ -218,7 +218,7 @@ function SignUp() {
               </div>
             </div>
 
-            {/* Confirm Password Field - Made responsive */}
+           
             <div>
               <label className="block text-sm sm:text-base font-semibold text-gray-700 mb-2">
                 {t.confirmPassword}
@@ -246,7 +246,7 @@ function SignUp() {
               </div>
             </div>
 
-            {/* Submit Button - Made responsive */}
+        
             <button
               onClick={handleSubmit}
               disabled={loading}
@@ -256,7 +256,7 @@ function SignUp() {
             </button>
           </div>
 
-          {/* Login Link - Made responsive */}
+         
           <div className="mt-4 sm:mt-6 text-center">
             <p className="text-sm sm:text-base text-gray-600">
               {t.alreadyHaveAccount}{" "}
@@ -271,7 +271,7 @@ function SignUp() {
         </div>
       </main>
 
-      {/* Responsive Spacing for very small screens */}
+      
       <div className="h-4 sm:h-0"></div>
     </div>
   );

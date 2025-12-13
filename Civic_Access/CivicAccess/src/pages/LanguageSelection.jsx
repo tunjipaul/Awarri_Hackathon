@@ -20,9 +20,8 @@ function LanguageSelection() {
 
   return (
     <div className="flex flex-col min-h-screen items-center justify-center p-4 bg-linear-to-b from-green-50 to-white">
-      <Background /> {/* Background component */}
+      <Background />
       <div className="w-full max-w-md text-center relative z-10">
-        {/* Header */}
         <header className="mb-8">
           <div className="inline-flex items-center justify-center size-16 bg-green-100 rounded-full mb-4">
             <svg
@@ -40,7 +39,6 @@ function LanguageSelection() {
           </p>
         </header>
 
-        {/* Language Grid */}
         <main className="w-full">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {languages.map((lang) => (
@@ -59,7 +57,6 @@ function LanguageSelection() {
           </div>
         </main>
 
-        {/* Footer with Nigeria colors */}
         <div className="mt-12 flex justify-center gap-1 h-1">
           <div className="flex-1 bg-green-600 rounded-full"></div>
           <div className="flex-1 bg-white border border-green-600 rounded-full"></div>

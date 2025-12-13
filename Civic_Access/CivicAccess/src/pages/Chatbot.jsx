@@ -15,8 +15,7 @@ import Footer from "../Footer";
 const translations = {
   en: {
     online: "online",
-    selectIssue:
-      "What are you dealing with today?",
+    selectIssue: "What are you dealing with today?",
     policeEncounter: "Police Encounter",
     landlordTenant: "Landlord/Tenant",
     describeIssue:
@@ -27,14 +26,14 @@ const translations = {
     simpleExplanation: "Simple Explanation",
     legalProof: "Legal Proof",
     error: "Sorry I encountered an error. Please try again later.",
-    // New translations for rate limiting
+
     tooManyRequests: "Please wait a moment",
     rateLimitMessage:
       "We're processing many requests. Please wait about 1 minute before checking the grade again.",
     checkingGrade: "Checking grade...",
     gradeAvailable: "Grade available",
     tryAgainSoon: "Try again soon",
-    gradeTimeout: "Grade check timed out. Try again later.", // Added Timeout status
+    gradeTimeout: "Grade check timed out. Try again later.",
   },
   ha: {
     online: "online",
@@ -48,14 +47,14 @@ const translations = {
     simpleExplanation: "Sauƙaƙƙe Bayani",
     legalProof: "Shaida ta Shari'a",
     error: "Yi hakuri na ci karo da kuskure don Allah a sake gwadawa daga baya",
-    // New translations for rate limiting
+
     tooManyRequests: "Da fatan za a jira",
     rateLimitMessage:
       "Muna sarrafa buƙatun da yawa. Da fatan za a jira minti ɗaya kafin duba maki.",
     checkingGrade: "Ana duba maki...",
     gradeAvailable: "Maki suna samuwa",
     tryAgainSoon: "Gwada kuma nan da nan",
-    gradeTimeout: "An dakatar da duba maki. Gwada kuma daga baya.", // Added Timeout status
+    gradeTimeout: "An dakatar da duba maki. Gwada kuma daga baya.",
   },
   ig: {
     online: "online",
@@ -69,14 +68,14 @@ const translations = {
     simpleExplanation: "Nkọwahụ Dị Mfe",
     legalProof: "Ihe Akaaka Iwu",
     error: "ndo ahụrụ m njehie biko nwaa ọzọ ma emechaa",
-    // New translations for rate limiting
+
     tooManyRequests: "Biko chere",
     rateLimitMessage:
       "Anyị na-ahazi ọtụtụ arịrịọ. Biko chere ihe dịka nkeji tupu ịlele ọkwa ọzọ.",
     checkingGrade: "A na-enyocha ọkwa...",
     gradeAvailable: "Ọkwa dị",
     tryAgainSoon: "Nwaa ọzọ n'oge na-adịghị anya",
-    gradeTimeout: "Oge nlele ọkwa agwụla. Nwaa ọzọ ma emechaa.", // Added Timeout status
+    gradeTimeout: "Oge nlele ọkwa agwụla. Nwaa ọzọ ma emechaa.",
   },
   yo: {
     online: "online",
@@ -90,14 +89,14 @@ const translations = {
     simpleExplanation: "Alaye ti o rọrun",
     legalProof: "Ẹri Ofin",
     error: "ma binu mo pade aṣiṣe kan jọwọ gbiyanju lẹẹkansi nigbamii",
-    // New translations for rate limiting
+
     tooManyRequests: "Jọwọ duro",
     rateLimitMessage:
       "A nṣe iṣẹ ọpọlọpọ ibeere. Jọwọ duro iye àádọ́ta ìṣẹ́jú kí o lè ṣe àyẹ̀wò iwọn ọlẹ.",
     checkingGrade: "A nṣe àyẹ̀wò iwọn ọlẹ...",
     gradeAvailable: "Iwọn ọlẹ wa",
     tryAgainSoon: "Gbiyanju lẹẹkansi laipe",
-    gradeTimeout: "Àyẹ̀wò iwọn ọlẹ ti pẹ́. Gbiyanju lẹẹkansi laipe.", // Added Timeout status
+    gradeTimeout: "Àyẹ̀wò iwọn ọlẹ ti pẹ́. Gbiyanju lẹẹkansi laipe.",
   },
   pid: {
     online: "online",
@@ -111,14 +110,13 @@ const translations = {
     simpleExplanation: "Simple Explanation",
     legalProof: "Legal Proof",
     error: "Omor, error dey here shuu. Abeg try am again!",
-    // New translations for rate limiting
     tooManyRequests: "Abeg wait small",
     rateLimitMessage:
       "We dey process plenty request. Abeg wait for about 1 minute before you check your grade again.",
     checkingGrade: "Dey check grade...",
     gradeAvailable: "Grade don ready",
     tryAgainSoon: "Try again soon",
-    gradeTimeout: "Grade check don tire. Try again later.", // Added Timeout status
+    gradeTimeout: "Grade check don tire. Try again later.",
   },
 };
 
@@ -144,7 +142,7 @@ function Chatbot() {
         type: "text",
         judge_score: null,
         judge_reason: null,
-        pollingStatus: "complete", // Added for consistency
+        pollingStatus: "complete",
       },
     ];
   });
@@ -155,7 +153,6 @@ function Chatbot() {
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [isGradingModalOpen, setIsGradingModalOpen] = useState(false);
 
-  // NEW STATE for Rate Limiting
   const [rateLimitCooldown, setRateLimitCooldown] = useState(false);
   const [rateLimitMessage, setRateLimitMessage] = useState("");
 
@@ -190,7 +187,6 @@ function Chatbot() {
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
-    // Reset rate limit display when a new message is sent
     setRateLimitCooldown(false);
     setRateLimitMessage("");
 
@@ -204,7 +200,6 @@ function Chatbot() {
       };
       const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-      // First request: Get chat response
       const response = await fetch(`${BACKEND_URL}/chat`, {
         method: "POST",
         headers: {
@@ -225,11 +220,9 @@ function Chatbot() {
 
       const newBotMessageId = messages.length + 2;
 
-      // *** Safely extract translatedQuery from debug_info ***
       const translatedQuery =
         data.debug_info?.translated_query || userMessage.text;
 
-      // Create bot message with initial polling status
       const botMessage = {
         id: newBotMessageId,
         text: data.response,
@@ -237,13 +230,12 @@ function Chatbot() {
         type: "text",
         judge_score: null,
         judge_reason: null,
-        pollingStatus: "checking", // Initial status
+        pollingStatus: "checking",
         translatedQuery: translatedQuery,
       };
 
       setMessages((prev) => [...prev, botMessage]);
 
-      // Start polling for grade
       startPollingForGrade(newBotMessageId);
     } catch (error) {
       console.error("Error fetching response:", error);
@@ -266,13 +258,11 @@ function Chatbot() {
     const maxAttempts = 10;
     let attempts = 0;
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-    let cooldownInterval = null; // Reference for the interval
+    let cooldownInterval = null;
 
     const poll = async () => {
-      // Check for global cooldown
       if (rateLimitCooldown) {
         console.log("Rate limit cooldown active, skipping poll attempt.");
-        // Set the status to rate_limited on the message to render the correct UI
         setMessages((prev) =>
           prev.map((msg) =>
             msg.id === messageId
@@ -280,7 +270,7 @@ function Chatbot() {
               : msg
           )
         );
-        return; // Stop polling attempts until cooldown lifts
+        return;
       }
 
       try {
@@ -289,7 +279,6 @@ function Chatbot() {
           `Polling attempt ${attempts}/${maxAttempts} for message ${messageId}`
         );
 
-        // Update message to show checking status
         setMessages((prev) =>
           prev.map((msg) =>
             msg.id === messageId
@@ -304,7 +293,6 @@ function Chatbot() {
           if (logsResponse.status === 429) {
             console.log("Rate limited (429). Too many requests.");
 
-            // 1. Update the message status to show the warning
             setMessages((prev) =>
               prev.map((msg) =>
                 msg.id === messageId
@@ -313,11 +301,9 @@ function Chatbot() {
               )
             );
 
-            // 2. Set global cooldown state (disables input and subsequent polling)
             setRateLimitCooldown(true);
             setRateLimitMessage(t.rateLimitMessage);
 
-            // 3. Start the cooldown timer (60 seconds)
             let cooldownTime = 60;
             cooldownInterval = setInterval(() => {
               cooldownTime--;
@@ -326,7 +312,6 @@ function Chatbot() {
                 setRateLimitCooldown(false);
                 setRateLimitMessage("");
 
-                // Update message status to allow retry
                 setMessages((prev) =>
                   prev.map((msg) =>
                     msg.id === messageId
@@ -335,7 +320,6 @@ function Chatbot() {
                   )
                 );
               } else {
-                // Update the global warning message with the remaining time
                 setRateLimitMessage(
                   `${
                     t.rateLimitMessage.split(".")[0]
@@ -344,7 +328,7 @@ function Chatbot() {
               }
             }, 1000);
 
-            return; // Stop polling due to rate limit
+            return;
           }
           throw new Error(`Failed to fetch logs: ${logsResponse.status}`);
         }
@@ -352,7 +336,6 @@ function Chatbot() {
         const logsData = await logsResponse.json();
         console.log("Logs response:", logsData);
 
-        // Check if grading is complete (robust check needed here, but using index 0 for simplicity)
         if (logsData.logs && logsData.logs.length > 0) {
           const latestLog = logsData.logs[0];
 
@@ -360,7 +343,6 @@ function Chatbot() {
             const judge_score = latestLog.judge_score || null;
             const judge_reason = latestLog.judge_reason || null;
 
-            // Update the bot message with grading data
             setMessages((prev) =>
               prev.map((msg) =>
                 msg.id === messageId
@@ -374,17 +356,14 @@ function Chatbot() {
               )
             );
             console.log("Grading complete! Score:", judge_score);
-            return; // Stop polling
+            return;
           }
         }
 
-        // If not complete, poll again after delay
         if (attempts < maxAttempts) {
-          // Use a fixed delay (5 seconds)
           setTimeout(poll, 5000);
         } else {
           console.log("Max polling attempts reached (Timeout)");
-          // Update message to show timeout status
           setMessages((prev) =>
             prev.map((msg) =>
               msg.id === messageId ? { ...msg, pollingStatus: "timeout" } : msg
@@ -394,22 +373,19 @@ function Chatbot() {
       } catch (error) {
         console.error("Error fetching logs:", error);
         if (attempts < maxAttempts) {
-          setTimeout(poll, 5000); // Retry after 5 seconds on other errors
+          setTimeout(poll, 5000);
         }
       }
     };
 
-    // Start polling after 3 seconds to give backend time to process
     setTimeout(poll, 3000);
   };
 
   const openGradingModal = (message) => {
-    // Prevent opening if the message is in a rate-limited or pending state
     if (message.pollingStatus !== "complete" || message.judge_score === null) {
       if (message.pollingStatus === "rate_limited" || rateLimitCooldown) {
         alert(t.rateLimitMessage);
       } else if (message.pollingStatus.startsWith("checking")) {
-        // Simple alert for pending grade
         alert(t.checkingGrade);
       }
       return;
@@ -420,7 +396,6 @@ function Chatbot() {
   };
 
   const retryGradeCheck = (messageId) => {
-    // Prevent retry if global cooldown is active
     if (rateLimitCooldown) {
       alert(t.rateLimitMessage);
       return;
@@ -428,9 +403,7 @@ function Chatbot() {
 
     setMessages((prev) =>
       prev.map((msg) =>
-        msg.id === messageId
-          ? { ...msg, pollingStatus: "checking" } // Reset status to re-initiate polling UI
-          : msg
+        msg.id === messageId ? { ...msg, pollingStatus: "checking" } : msg
       )
     );
     startPollingForGrade(messageId);
@@ -447,12 +420,9 @@ function Chatbot() {
     window.location.href = "/";
   };
 
-  // Helper function to render grade status
   const renderGradeStatus = (message) => {
-    // State 1: Grade is Complete - NEW STYLING APPLIED HERE
     if (message.pollingStatus === "complete" && message.judge_score !== null) {
       return (
-        // Button styled with white background, black text, and green border
         <button
           onClick={() => openGradingModal(message)}
           className="inline-flex items-center gap-1.5 bg-white text-gray-900 text-xs font-semibold py-2 px-3 rounded border-2 border-green-500 hover:bg-gray-50 transition-colors shadow-sm"
@@ -463,7 +433,6 @@ function Chatbot() {
       );
     }
 
-    // State 2: Rate Limited (global cooldown or temporary state)
     if (message.pollingStatus === "rate_limited") {
       return (
         <div className="inline-flex items-center gap-2 bg-amber-600 text-white text-xs font-semibold py-2 px-3 rounded">
@@ -476,7 +445,6 @@ function Chatbot() {
       );
     }
 
-    // State 3: Polling/Checking Grade
     if (message.pollingStatus && message.pollingStatus.startsWith("checking")) {
       return (
         <div className="inline-flex items-center gap-2 bg-blue-500 text-white text-xs font-semibold py-2 px-3 rounded">
@@ -496,7 +464,6 @@ function Chatbot() {
       );
     }
 
-    // State 4: Retry Available (after cooldown, or an error)
     if (
       message.pollingStatus === "retry_available" ||
       message.pollingStatus === "timeout"
@@ -519,7 +486,7 @@ function Chatbot() {
       );
     }
 
-    return null; // Default to nothing if status is not set or is 'error'
+    return null;
   };
 
   return (
@@ -541,7 +508,6 @@ function Chatbot() {
         }
       `}</style>
 
-      {/* Header */}
       <header className="shrink-0 bg-linear-to-r from-green-600 to-green-700 text-white shadow-lg">
         <div className="px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
@@ -562,7 +528,6 @@ function Chatbot() {
             </div>
 
             <div className="flex items-center gap-2">
-              {/* Rate Limit Indicator (Header) */}
               {rateLimitCooldown && (
                 <div className="mr-2 px-3 py-1 bg-amber-500 text-white text-xs rounded-full flex items-center gap-1">
                   <Clock size={12} />
@@ -615,9 +580,7 @@ function Chatbot() {
         </div>
       </header>
 
-      {/* Main Area with Pillars */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Left Pillar */}
         <div className="hidden lg:flex w-32 bg-linear-to-r from-green-600 to-green-700 items-center justify-center overflow-hidden">
           <div className="pillar-text text-white/40 font-bold text-md">
             Awarri Hackathon by Team Sabilaw • CivicAccess • Awarri Hackathon by
@@ -625,9 +588,7 @@ function Chatbot() {
           </div>
         </div>
 
-        {/* Chat Area */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 chat-bg">
             {messages.map((msg) => (
               <div key={msg.id}>
@@ -654,7 +615,6 @@ function Chatbot() {
                   </div>
                 </div>
 
-                {/* Grading Button/Status (Placement Adjusted) */}
                 {msg.sender === "bot" && (
                   <div className="flex justify-start mt-1 pl-10">
                     {renderGradeStatus(msg)}
@@ -685,9 +645,7 @@ function Chatbot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
           <div className="shrink-0 bg-white border-t border-gray-300 p-3 sm:p-4">
-            {/* Rate Limit Message (Input area) */}
             {rateLimitMessage && (
               <div className="mb-3 px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 text-sm">
                 <div className="flex items-start gap-2">
@@ -728,7 +686,6 @@ function Chatbot() {
           </div>
         </div>
 
-        {/* Right Pillar */}
         <div className="hidden lg:flex w-32 bg-linear-to-l from-green-600 to-green-700 items-center justify-center overflow-hidden">
           <div className="pillar-text text-white/40 font-bold text-md">
             Awarri Hackathon by Team Sabilaw • CivicAccess • Awarri Hackathon by
@@ -737,7 +694,6 @@ function Chatbot() {
         </div>
       </div>
 
-      {/* Grading Modal */}
       <GradingModal
         message={selectedMessage}
         isOpen={isGradingModalOpen}

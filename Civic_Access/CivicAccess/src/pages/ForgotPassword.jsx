@@ -77,7 +77,6 @@ function ForgotPassword() {
 
     setLoading(true);
     try {
-      // TODO: Replace with your actual backend endpoint
       const response = await fetch(
         "http://localhost:8000/auth/forgot-password",
         {
@@ -93,7 +92,7 @@ function ForgotPassword() {
 
       if (response.ok) {
         setSuccess(true);
-        // Auto-redirect after 5 seconds
+
         setTimeout(() => {
           navigate("/login");
         }, 5000);
@@ -111,7 +110,6 @@ function ForgotPassword() {
 
   return (
     <div className="flex flex-col min-h-screen bg-linear-to-b from-green-50 to-white">
-      {/* Header */}
       <header className="bg-green-600 text-white p-4">
         <button
           onClick={() => navigate("/login")}
@@ -122,7 +120,6 @@ function ForgotPassword() {
         </button>
       </header>
 
-      {/* Content */}
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
@@ -137,7 +134,6 @@ function ForgotPassword() {
             </p>
           </div>
 
-          {/* Form */}
           <div className="bg-white rounded-xl shadow-lg p-6 space-y-4">
             {success ? (
               <div className="text-center space-y-4">
@@ -200,7 +196,6 @@ function ForgotPassword() {
             )}
           </div>
 
-          {/* Responsive note for mobile */}
           <p className="mt-6 text-center text-xs text-gray-500">
             If you don't see the email, check your spam folder
           </p>
