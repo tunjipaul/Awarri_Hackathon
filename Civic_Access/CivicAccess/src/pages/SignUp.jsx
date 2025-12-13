@@ -99,11 +99,8 @@ function SignUp() {
 
     setLoading(true);
     const apiUrl = import.meta.env.VITE_BACKEND_URL;
-    console.log("🔍 API URL:", apiUrl);
-    console.log("🔍 Full URL:", `${apiUrl}/auth/signup`);
 
     try {
-      console.log("📤 Sending signup request...");
       const response = await fetch(`${apiUrl}/auth/signup`, {
         method: "POST",
         headers: {
@@ -118,7 +115,6 @@ function SignUp() {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("✅ Signup successful:", data);
         // Signup successful - redirect to login with email
         navigate("/login", { 
           state: { 
@@ -127,7 +123,6 @@ function SignUp() {
           } 
         });
       } else {
-        console.log("❌ Signup failed:", data);
         setError(data.detail || t.error);
       }
     } catch (err) {
