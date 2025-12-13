@@ -1,4 +1,4 @@
-# --- CONFIGURATION ---
+
 TURSO_URL = os.getenv("TURSO_URL")
 TURSO_TOKEN = os.getenv("TURSO_TOKEN")
 
@@ -10,7 +10,7 @@ def get_db_connection():
         return None
         
     try:
-        # Connect to Turso using the sync client
+        
         conn = libsql.connect(TURSO_URL, auth_token=TURSO_TOKEN)
         return conn
     except Exception as e:
@@ -24,7 +24,7 @@ def init_db():
         return
 
     try:
-        # Note: We use conn.execute() directly for libsql
+       
         conn.execute('''
             CREATE TABLE IF NOT EXISTS interactions (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
