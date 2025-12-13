@@ -14,6 +14,7 @@ const translations = {
     back: "Back",
     error: "Sign up failed. Please try again.",
     signupMessage: "Join CivicAccess today",
+    message: "Account created! Please log in with your credentials.",
   },
   ha: {
     signup: "Ƙirƙiri Akaun",
@@ -26,6 +27,7 @@ const translations = {
     back: "Koma baya",
     error: "Kukarin ƙirƙiri akaun bai yi nasara ba.",
     signupMessage: "Zama CivicAccess ɗinku",
+    message: "Akaun zama! Shiga cikin asusun ɗinku.",
   },
   ig: {
     signup: "Mewe Akauntụ",
@@ -38,6 +40,7 @@ const translations = {
     back: "Laghachi azụ",
     error: "Mmewe akauntụ adịghị ezi.",
     signupMessage: "Zama CivicAccess ɗinku",
+    message: "akaụntụ emepụtara biko banye na akaụntụ gị.",
   },
   yo: {
     signup: "Ṣẹda Akaùnti",
@@ -50,6 +53,7 @@ const translations = {
     back: "Lọ padà",
     error: "Ṣíṣẹda akaùnti kò rọ́pọ̀.",
     signupMessage: "Darapọ mọ CivicAccess loni",
+    message: "Àkọọlẹ ti dá! Jọwọ wọle pẹlu awọn ẹri rẹ.",
   },
   pid: {
     signup: "Register",
@@ -62,6 +66,7 @@ const translations = {
     back: "Go Back",
     error: "Register no work. Try again.",
     signupMessage: "Join CivicAccess E too Sure!!!",
+    message: "Account don create! Abeg log in with your details.",
   },
 };
 
@@ -119,7 +124,7 @@ function SignUp() {
         navigate("/login", { 
           state: { 
             email: email,
-            message: "Account created! Please log in with your credentials."
+            message: t.message
           } 
         });
       } else {
