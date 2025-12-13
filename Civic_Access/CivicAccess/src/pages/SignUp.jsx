@@ -15,6 +15,9 @@ const translations = {
     error: "Sign up failed. Please try again.",
     signupMessage: "Join CivicAccess today",
     message: "Account created! Please log in with your credentials.",
+    errorfield: "All fields are required",
+    errorMatch: "Passwords do not match",
+    errorLength: "Password must be at least 6 characters",
   },
   ha: {
     signup: "Ƙirƙiri Akaun",
@@ -28,6 +31,9 @@ const translations = {
     error: "Kukarin ƙirƙiri akaun bai yi nasara ba.",
     signupMessage: "Zama CivicAccess ɗinku",
     message: "Akaun zama! Shiga cikin asusun ɗinku.",
+    errorfield: "ana buƙatar duk filayen",
+    errorMatch: "kalmar sirri ba ta dace ba",
+    errorLength: "kalmar sirri dole ne ya zama aƙalla haruffa 6",
   },
   ig: {
     signup: "Mewe Akauntụ",
@@ -41,6 +47,9 @@ const translations = {
     error: "Mmewe akauntụ adịghị ezi.",
     signupMessage: "Zama CivicAccess ɗinku",
     message: "akaụntụ emepụtara biko banye na akaụntụ gị.",
+    errorfield: "a chọrọ ubi niile",
+    errorMatch: "okwuntughe ekwekọghị",
+    errorLength: "okwuntughe ga-abụrịrị opekata mpe mkpụrụedemede 6",
   },
   yo: {
     signup: "Ṣẹda Akaùnti",
@@ -54,6 +63,9 @@ const translations = {
     error: "Ṣíṣẹda akaùnti kò rọ́pọ̀.",
     signupMessage: "Darapọ mọ CivicAccess loni",
     message: "Àkọọlẹ ti dá! Jọwọ wọle pẹlu awọn ẹri rẹ.",
+    errorfield: "Gbogbo awọn aaye ni a beere",
+    errorMatch: "ọrọigbaniwọle ko baramu",
+    errorLength: "ọrọigbaniwọle gbọdọ jẹ o kere ju awọn ohun kikọ 6",
   },
   pid: {
     signup: "Register",
@@ -67,6 +79,9 @@ const translations = {
     error: "Register no work. Try again.",
     signupMessage: "Join CivicAccess E too Sure!!!",
     message: "Account don create! Abeg log in with your details.",
+    errorfield: "no leave empty space for any field",
+    errorMatch: "your Password no match, try remember am",
+    errorLength: "your Password must get at least 6 characters",
   },
 };
 
@@ -88,17 +103,17 @@ function SignUp() {
     setError("");
 
     if (!email || !password || !confirmPassword) {
-      setError("All fields are required");
+      setError(t.errorfield);
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError(t.errorMatch);
       return;
     }
 
     if (password.length < 6) {
-      setError("Password must be at least 6 characters");
+      setError(t.errorLength);
       return;
     }
 
