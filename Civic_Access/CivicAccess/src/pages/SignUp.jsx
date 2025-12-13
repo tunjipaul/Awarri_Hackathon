@@ -98,8 +98,10 @@ function SignUp() {
     }
 
     setLoading(true);
+    const apiUrl = import.meta.env.VITE_BACKEND_URL;
+
     try {
-      const response = await fetch("http://localhost:8000/auth/signup", {
+      const response = await fetch(`${apiUrl}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

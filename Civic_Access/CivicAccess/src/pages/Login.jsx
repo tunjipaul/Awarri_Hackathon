@@ -90,8 +90,10 @@ function Login() {
     }
 
     setLoading(true);
+    const apiUrl = import.meta.env.VITE_BACKEND_URL;
+
     try {
-      const response = await fetch("http://localhost:8000/auth/login", {
+      const response = await fetch(`${apiUrl}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -106,6 +108,7 @@ function Login() {
         setError(t.error);
       }
     } catch (err) {
+      console.error("Login error:", err);
       setError("Network error. Please try again.");
     } finally {
       setLoading(false);
