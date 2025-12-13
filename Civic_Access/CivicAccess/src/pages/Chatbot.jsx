@@ -16,7 +16,7 @@ const translations = {
   en: {
     online: "online",
     selectIssue:
-      "What are you dealing with today? Please select an option below.",
+      "What are you dealing with today?",
     policeEncounter: "Police Encounter",
     landlordTenant: "Landlord/Tenant",
     describeIssue:
