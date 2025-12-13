@@ -398,3 +398,9 @@ For issues or questions:
 **Version:** 1.0.0  
 **Status:** Active Development  
 **Maintained by:** Team Sabilaw
+
+- **Contact Team Sabilaw:**
+1. Akinrinde Ademola Victor (GitHub: @Ademsbabyy)
+2. Oluwapelumi Oluwafemi Awoyale(GitHub: @femilearnsai)
+3. Dasaolu Samuel(GitHub: @samueldasaolu)
+4. Ogor Paul Olatunji(GitHub: @tunjipaul)

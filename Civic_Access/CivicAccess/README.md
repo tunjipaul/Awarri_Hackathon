@@ -470,7 +470,13 @@ CivicAccess provides legal information for educational purposes only. It does **
 
 For issues, questions, or suggestions:
 - Open an issue on GitHub
-- Contact Team Sabilaw
+- **Contact Team Sabilaw:**
+1. Akinrinde Ademola Victor (GitHub: @Ademsbabyy)
+2. Oluwapelumi Oluwafemi Awoyale(GitHub: @femilearnsai)
+3. Dasaolu Samuel(GitHub: @samueldasaolu)
+4. Ogor Paul Olatunji(GitHub: @tunjipaul)
+
+
 - Check the main [README](../../README.md) for more info
 
 ---

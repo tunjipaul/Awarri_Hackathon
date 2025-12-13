@@ -193,7 +193,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 ### Frontend (.env.local)
 ```env
-VITE_BACKEND_URL=http://localhost:8000
+VITE_BACKEND_URL=http://localhost:1234
 VITE_API_KEY=your_api_key
 ```
 
@@ -240,3 +240,9 @@ For questions, issues, or suggestions:
 **Last Updated:** December 2025  
 **Version:** 1.0.0  
 **Status:** Active Development
+
+- **Contact Team Sabilaw:**
+1. Akinrinde Ademola Victor (GitHub: @Ademsbabyy)
+2. Oluwapelumi Oluwafemi Awoyale(GitHub: @femilearnsai)
+3. Dasaolu Samuel(GitHub: @samueldasaolu)
+4. Ogor Paul Olatunji(GitHub: @tunjipaul)
