@@ -99,8 +99,11 @@ function SignUp() {
 
     setLoading(true);
     const apiUrl = import.meta.env.VITE_BACKEND_URL;
+    console.log("🔍 API URL:", apiUrl);
+    console.log("🔍 Full URL:", `${apiUrl}/auth/signup`);
 
     try {
+      console.log("📤 Sending signup request...");
       const response = await fetch(`${apiUrl}/auth/signup`, {
         method: "POST",
         headers: {
@@ -115,10 +118,16 @@ function SignUp() {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("token", data.access_token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/chatbot");
+        console.log("✅ Signup successful:", data);
+        // Signup successful - redirect to login with email
+        navigate("/login", { 
+          state: { 
+            email: email,
+            message: "Account created! Please log in with your credentials."
+          } 
+        });
       } else {
+        console.log("❌ Signup failed:", data);
         setError(data.detail || t.error);
       }
     } catch (err) {
