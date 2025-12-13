@@ -1,5 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import { Send, LogOut, Globe, ChevronDown, Plus, CheckCircle, Clock } from "lucide-react";
+import {
+  Send,
+  LogOut,
+  Globe,
+  ChevronDown,
+  Plus,
+  CheckCircle,
+  Clock,
+} from "lucide-react";
 import { FaGavel } from "react-icons/fa";
 import GradingModal from "../GradingModal";
 import Footer from "../Footer";
@@ -21,7 +29,8 @@ const translations = {
     error: "Sorry I encountered an error. Please try again later.",
     // New translations for rate limiting
     tooManyRequests: "Please wait a moment",
-    rateLimitMessage: "We're processing many requests. Please wait about 1 minute before checking the grade again.",
+    rateLimitMessage:
+      "We're processing many requests. Please wait about 1 minute before checking the grade again.",
     checkingGrade: "Checking grade...",
     gradeAvailable: "Grade available",
     tryAgainSoon: "Try again soon",
@@ -41,7 +50,8 @@ const translations = {
     error: "Yi hakuri na ci karo da kuskure don Allah a sake gwadawa daga baya",
     // New translations for rate limiting
     tooManyRequests: "Da fatan za a jira",
-    rateLimitMessage: "Muna sarrafa buƙatun da yawa. Da fatan za a jira minti ɗaya kafin duba maki.",
+    rateLimitMessage:
+      "Muna sarrafa buƙatun da yawa. Da fatan za a jira minti ɗaya kafin duba maki.",
     checkingGrade: "Ana duba maki...",
     gradeAvailable: "Maki suna samuwa",
     tryAgainSoon: "Gwada kuma nan da nan",
@@ -61,7 +71,8 @@ const translations = {
     error: "ndo ahụrụ m njehie biko nwaa ọzọ ma emechaa",
     // New translations for rate limiting
     tooManyRequests: "Biko chere",
-    rateLimitMessage: "Anyị na-ahazi ọtụtụ arịrịọ. Biko chere ihe dịka nkeji tupu ịlele ọkwa ọzọ.",
+    rateLimitMessage:
+      "Anyị na-ahazi ọtụtụ arịrịọ. Biko chere ihe dịka nkeji tupu ịlele ọkwa ọzọ.",
     checkingGrade: "A na-enyocha ọkwa...",
     gradeAvailable: "Ọkwa dị",
     tryAgainSoon: "Nwaa ọzọ n'oge na-adịghị anya",
@@ -81,7 +92,8 @@ const translations = {
     error: "ma binu mo pade aṣiṣe kan jọwọ gbiyanju lẹẹkansi nigbamii",
     // New translations for rate limiting
     tooManyRequests: "Jọwọ duro",
-    rateLimitMessage: "A nṣe iṣẹ ọpọlọpọ ibeere. Jọwọ duro iye àádọ́ta ìṣẹ́jú kí o lè ṣe àyẹ̀wò iwọn ọlẹ.",
+    rateLimitMessage:
+      "A nṣe iṣẹ ọpọlọpọ ibeere. Jọwọ duro iye àádọ́ta ìṣẹ́jú kí o lè ṣe àyẹ̀wò iwọn ọlẹ.",
     checkingGrade: "A nṣe àyẹ̀wò iwọn ọlẹ...",
     gradeAvailable: "Iwọn ọlẹ wa",
     tryAgainSoon: "Gbiyanju lẹẹkansi laipe",
@@ -101,7 +113,8 @@ const translations = {
     error: "Omor, error dey here shuu. Abeg try am again!",
     // New translations for rate limiting
     tooManyRequests: "Abeg wait small",
-    rateLimitMessage: "We dey process plenty request. Abeg wait for about 1 minute before you check your grade again.",
+    rateLimitMessage:
+      "We dey process plenty request. Abeg wait for about 1 minute before you check your grade again.",
     checkingGrade: "Dey check grade...",
     gradeAvailable: "Grade don ready",
     tryAgainSoon: "Try again soon",
@@ -141,11 +154,11 @@ function Chatbot() {
   const [loading, setLoading] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [isGradingModalOpen, setIsGradingModalOpen] = useState(false);
-  
+
   // NEW STATE for Rate Limiting
   const [rateLimitCooldown, setRateLimitCooldown] = useState(false);
   const [rateLimitMessage, setRateLimitMessage] = useState("");
-  
+
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -213,7 +226,8 @@ function Chatbot() {
       const newBotMessageId = messages.length + 2;
 
       // *** Safely extract translatedQuery from debug_info ***
-      const translatedQuery = data.debug_info?.translated_query || userMessage.text;
+      const translatedQuery =
+        data.debug_info?.translated_query || userMessage.text;
 
       // Create bot message with initial polling status
       const botMessage = {
@@ -231,7 +245,6 @@ function Chatbot() {
 
       // Start polling for grade
       startPollingForGrade(newBotMessageId);
-
     } catch (error) {
       console.error("Error fetching response:", error);
       const errorMessage = {
@@ -262,7 +275,9 @@ function Chatbot() {
         // Set the status to rate_limited on the message to render the correct UI
         setMessages((prev) =>
           prev.map((msg) =>
-            msg.id === messageId ? { ...msg, pollingStatus: "rate_limited" } : msg
+            msg.id === messageId
+              ? { ...msg, pollingStatus: "rate_limited" }
+              : msg
           )
         );
         return; // Stop polling attempts until cooldown lifts
@@ -270,8 +285,10 @@ function Chatbot() {
 
       try {
         attempts++;
-        console.log(`Polling attempt ${attempts}/${maxAttempts} for message ${messageId}`);
-        
+        console.log(
+          `Polling attempt ${attempts}/${maxAttempts} for message ${messageId}`
+        );
+
         // Update message to show checking status
         setMessages((prev) =>
           prev.map((msg) =>
@@ -286,7 +303,7 @@ function Chatbot() {
         if (!logsResponse.ok) {
           if (logsResponse.status === 429) {
             console.log("Rate limited (429). Too many requests.");
-            
+
             // 1. Update the message status to show the warning
             setMessages((prev) =>
               prev.map((msg) =>
@@ -295,11 +312,11 @@ function Chatbot() {
                   : msg
               )
             );
-            
+
             // 2. Set global cooldown state (disables input and subsequent polling)
             setRateLimitCooldown(true);
             setRateLimitMessage(t.rateLimitMessage);
-            
+
             // 3. Start the cooldown timer (60 seconds)
             let cooldownTime = 60;
             cooldownInterval = setInterval(() => {
@@ -308,19 +325,25 @@ function Chatbot() {
                 clearInterval(cooldownInterval);
                 setRateLimitCooldown(false);
                 setRateLimitMessage("");
-                
+
                 // Update message status to allow retry
                 setMessages((prev) =>
                   prev.map((msg) =>
-                    msg.id === messageId ? { ...msg, pollingStatus: "retry_available" } : msg
+                    msg.id === messageId
+                      ? { ...msg, pollingStatus: "retry_available" }
+                      : msg
                   )
                 );
               } else {
                 // Update the global warning message with the remaining time
-                setRateLimitMessage(`${t.rateLimitMessage.split('.')[0]}. (${cooldownTime}s remaining)`);
+                setRateLimitMessage(
+                  `${
+                    t.rateLimitMessage.split(".")[0]
+                  }. (${cooldownTime}s remaining)`
+                );
               }
             }, 1000);
-            
+
             return; // Stop polling due to rate limit
           }
           throw new Error(`Failed to fetch logs: ${logsResponse.status}`);
@@ -331,7 +354,7 @@ function Chatbot() {
 
         // Check if grading is complete (robust check needed here, but using index 0 for simplicity)
         if (logsData.logs && logsData.logs.length > 0) {
-          const latestLog = logsData.logs[0]; 
+          const latestLog = logsData.logs[0];
 
           if (latestLog.status === "graded") {
             const judge_score = latestLog.judge_score || null;
@@ -341,11 +364,11 @@ function Chatbot() {
             setMessages((prev) =>
               prev.map((msg) =>
                 msg.id === messageId
-                  ? { 
-                      ...msg, 
-                      judge_score, 
+                  ? {
+                      ...msg,
+                      judge_score,
                       judge_reason,
-                      pollingStatus: "complete"
+                      pollingStatus: "complete",
                     }
                   : msg
               )
@@ -358,15 +381,13 @@ function Chatbot() {
         // If not complete, poll again after delay
         if (attempts < maxAttempts) {
           // Use a fixed delay (5 seconds)
-          setTimeout(poll, 5000); 
+          setTimeout(poll, 5000);
         } else {
           console.log("Max polling attempts reached (Timeout)");
           // Update message to show timeout status
           setMessages((prev) =>
             prev.map((msg) =>
-              msg.id === messageId
-                ? { ...msg, pollingStatus: "timeout" }
-                : msg
+              msg.id === messageId ? { ...msg, pollingStatus: "timeout" } : msg
             )
           );
         }
@@ -386,14 +407,14 @@ function Chatbot() {
     // Prevent opening if the message is in a rate-limited or pending state
     if (message.pollingStatus !== "complete" || message.judge_score === null) {
       if (message.pollingStatus === "rate_limited" || rateLimitCooldown) {
-         alert(t.rateLimitMessage);
+        alert(t.rateLimitMessage);
       } else if (message.pollingStatus.startsWith("checking")) {
         // Simple alert for pending grade
-         alert(t.checkingGrade);
+        alert(t.checkingGrade);
       }
       return;
     }
-    
+
     setSelectedMessage(message);
     setIsGradingModalOpen(true);
   };
@@ -441,7 +462,7 @@ function Chatbot() {
         </button>
       );
     }
-    
+
     // State 2: Rate Limited (global cooldown or temporary state)
     if (message.pollingStatus === "rate_limited") {
       return (
@@ -454,26 +475,39 @@ function Chatbot() {
         </div>
       );
     }
-    
+
     // State 3: Polling/Checking Grade
     if (message.pollingStatus && message.pollingStatus.startsWith("checking")) {
       return (
         <div className="inline-flex items-center gap-2 bg-blue-500 text-white text-xs font-semibold py-2 px-3 rounded">
           <div className="flex gap-1 items-center">
             <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-            <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-            <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+            <div
+              className="w-2 h-2 bg-white rounded-full animate-bounce"
+              style={{ animationDelay: "0.1s" }}
+            ></div>
+            <div
+              className="w-2 h-2 bg-white rounded-full animate-bounce"
+              style={{ animationDelay: "0.2s" }}
+            ></div>
           </div>
           {t.checkingGrade}
         </div>
       );
     }
-    
+
     // State 4: Retry Available (after cooldown, or an error)
-    if (message.pollingStatus === "retry_available" || message.pollingStatus === "timeout") {
-        const text = message.pollingStatus === "timeout" ? t.gradeTimeout : t.tryAgainSoon;
-        const color = message.pollingStatus === "timeout" ? "bg-red-500 hover:bg-red-600" : "bg-green-600 hover:bg-green-700";
-        
+    if (
+      message.pollingStatus === "retry_available" ||
+      message.pollingStatus === "timeout"
+    ) {
+      const text =
+        message.pollingStatus === "timeout" ? t.gradeTimeout : t.tryAgainSoon;
+      const color =
+        message.pollingStatus === "timeout"
+          ? "bg-red-500 hover:bg-red-600"
+          : "bg-green-600 hover:bg-green-700";
+
       return (
         <button
           onClick={() => retryGradeCheck(message.id)}
@@ -484,7 +518,7 @@ function Chatbot() {
         </button>
       );
     }
-    
+
     return null; // Default to nothing if status is not set or is 'error'
   };
 
@@ -622,7 +656,7 @@ function Chatbot() {
 
                 {/* Grading Button/Status (Placement Adjusted) */}
                 {msg.sender === "bot" && (
-                  <div className="flex justify-start mt-1 pl-10"> 
+                  <div className="flex justify-start mt-1 pl-10">
                     {renderGradeStatus(msg)}
                   </div>
                 )}
@@ -662,7 +696,7 @@ function Chatbot() {
                 </div>
               </div>
             )}
-            
+
             <div className="flex items-center gap-2">
               <button className="flex items-center justify-center w-10 h-10 rounded-full text-gray-600 hover:bg-gray-100">
                 <span className="text-2xl">
@@ -675,7 +709,10 @@ function Chatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) =>
-                  e.key === "Enter" && !loading && !rateLimitCooldown && handleSendMessage()
+                  e.key === "Enter" &&
+                  !loading &&
+                  !rateLimitCooldown &&
+                  handleSendMessage()
                 }
                 disabled={loading || rateLimitCooldown}
                 className="flex-1 px-4 py-2.5 border-2 border-gray-200 rounded-full focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-colors text-sm disabled:bg-gray-100 disabled:cursor-not-allowed"

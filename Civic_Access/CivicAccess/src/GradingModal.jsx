@@ -23,28 +23,36 @@ function GradingModal({ message, isOpen, onClose }) {
     if (score >= 70) return "Good";
     return "Needs Improvement";
   }, []);
-  
+
   // Calculate score once, handling null/NaN gracefully
-  const score = message ? (message.judge_score !== null ? message.judge_score : 'N/A') : 'N/A';
-  const reason = message ? message.judge_reason || "No evaluation reason provided." : "No evaluation reason provided.";
-  
+  const score = message
+    ? message.judge_score !== null
+      ? message.judge_score
+      : "N/A"
+    : "N/A";
+  const reason = message
+    ? message.judge_reason || "No evaluation reason provided."
+    : "No evaluation reason provided.";
+
   // Extract translated query
-  const translatedQuery = message ? message.translatedQuery || message.text : 'N/A';
-  
+  const translatedQuery = message
+    ? message.translatedQuery || message.text
+    : "N/A";
+
   // --- Accessibility Improvement (Close on Escape) ---
   useEffect(() => {
     const handleEscape = (event) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
     }
-    
+
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener("keydown", handleEscape);
     };
   }, [isOpen, onClose]);
   // ----------------------------------------------------
@@ -52,9 +60,9 @@ function GradingModal({ message, isOpen, onClose }) {
   if (!isOpen || !message) return null;
 
   return (
-    <div 
+    <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-      onClick={onClose} 
+      onClick={onClose}
     >
       <div
         className={`bg-white rounded-lg shadow-xl max-w-md w-full transform transition-all ${getScoreColor(
@@ -67,7 +75,9 @@ function GradingModal({ message, isOpen, onClose }) {
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 id="modal-title" className="text-xl font-bold text-gray-800">Response Evaluation</h2>
+          <h2 id="modal-title" className="text-xl font-bold text-gray-800">
+            Response Evaluation
+          </h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 transition-colors p-1 rounded-full hover:bg-gray-100"
@@ -78,16 +88,17 @@ function GradingModal({ message, isOpen, onClose }) {
         </div>
 
         {/* --- NEW: Translated Query Display --- */}
-        {message.translatedQuery && message.translatedQuery !== message.text && (
+        {message.translatedQuery &&
+          message.translatedQuery !== message.text && (
             <div className="bg-gray-50 p-6 border-b border-gray-200">
-                <p className="text-sm font-semibold text-gray-700 mb-1">
-                    Translated Query (for legal search):
-                </p>
-                <p className="text-sm italic text-gray-600">
-                    "{translatedQuery}"
-                </p>
+              <p className="text-sm font-semibold text-gray-700 mb-1">
+                Translated Query (for legal search):
+              </p>
+              <p className="text-sm italic text-gray-600">
+                "{translatedQuery}"
+              </p>
             </div>
-        )}
+          )}
         {/* --- END NEW --- */}
 
         {/* Content */}
@@ -114,7 +125,10 @@ function GradingModal({ message, isOpen, onClose }) {
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Evaluation Reason
             </label>
-            <div className="bg-white border border-gray-300 rounded-lg p-3 max-h-40 overflow-y-auto" tabIndex="0">
+            <div
+              className="bg-white border border-gray-300 rounded-lg p-3 max-h-40 overflow-y-auto"
+              tabIndex="0"
+            >
               <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
                 {reason}
               </p>

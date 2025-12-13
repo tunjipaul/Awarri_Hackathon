@@ -2,7 +2,7 @@ function Background() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Green gradient background with high transparency */}
-      <div className="absolute inset-0 bg-gradient-to-r from-green-50/5 via-white/3 to-green-50/5"></div>
+      <div className="absolute inset-0 bg-linear-to-r from-green-50/5 via-white/3 to-green-50/5"></div>
 
       {/* Scrolling text container */}
       <div className="absolute inset-0 flex items-center justify-start overflow-hidden">

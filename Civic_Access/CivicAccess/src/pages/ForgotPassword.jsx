@@ -78,15 +78,18 @@ function ForgotPassword() {
     setLoading(true);
     try {
       // TODO: Replace with your actual backend endpoint
-      const response = await fetch("http://localhost:8000/auth/forgot-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email.trim(),
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:8000/auth/forgot-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email.trim(),
+          }),
+        }
+      );
 
       if (response.ok) {
         setSuccess(true);
@@ -144,9 +147,7 @@ function ForgotPassword() {
                 <h3 className="text-lg font-semibold text-gray-900">
                   Check Your Email
                 </h3>
-                <p className="text-gray-600">
-                  {t.checkEmail}
-                </p>
+                <p className="text-gray-600">{t.checkEmail}</p>
                 <p className="text-sm text-gray-500">
                   Redirecting to login in 5 seconds...
                 </p>
