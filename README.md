@@ -21,6 +21,7 @@ A multilingual legal chatbot that bridges the gap between complex Nigerian laws 
 CivicAccess is a full-stack application built for the Awarri Hackathon by **Team Sabilaw**. It combines a powerful backend API with an intuitive React frontend to deliver legal information in multiple languages, making Nigerian legal systems more accessible to everyday citizens.
 
 **Key Objectives:**
+
 - Simplify complex legal information
 - Provide multilingual support
 - Enable easy access to constitutional and statutory laws
@@ -29,12 +30,14 @@ CivicAccess is a full-stack application built for the Awarri Hackathon by **Team
 ## ✨ Features
 
 ### 📚 Legal Information Access
+
 - 1999 Nigerian Constitution (as amended)
 - Nigerian Police Act 2020
 - Lagos State Tenancy Laws
 - Fundamental Human Rights
 
 ### 🌍 Multilingual Support
+
 - English
 - Hausa
 - Igbo
@@ -42,6 +45,7 @@ CivicAccess is a full-stack application built for the Awarri Hackathon by **Team
 - Pidgin English
 
 ### 👤 User Features
+
 - Real-time chat interface with AI-powered responses
 - Language selection and instant switching
 - Secure user authentication & session management
@@ -51,6 +55,7 @@ CivicAccess is a full-stack application built for the Awarri Hackathon by **Team
 ## 🛠️ Technology Stack
 
 ### Frontend
+
 - **React 18** - Modern UI framework
 - **Tailwind CSS** - Utility-first styling
 - **Vite** - Fast build tool
@@ -59,6 +64,7 @@ CivicAccess is a full-stack application built for the Awarri Hackathon by **Team
 - **JavaScript (ES6+)** - Programming language
 
 ### Backend
+
 - **Python 3.8+** - Server language
 - **FastAPI** - High-performance web framework
 - **SQLAlchemy** - ORM for database management
@@ -77,6 +83,7 @@ CivicAccess is a full-stack application built for the Awarri Hackathon by **Team
 ### Installation & Setup
 
 #### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/Team-Sabilaw/CivicAccess.git
 cd CivicAccess
@@ -174,16 +181,17 @@ For detailed documentation on specific parts:
 
 Key backend endpoints (see [Backend README](./Civic_Access/backend/README.md) for complete documentation):
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/` | Health check |
-| POST | `/auth/login` | User login |
-| POST | `/auth/register` | User registration |
-| POST | `/auth/logout` | User logout |
+| Method | Endpoint         | Description       |
+| ------ | ---------------- | ----------------- |
+| GET    | `/`              | Health check      |
+| POST   | `/auth/login`    | User login        |
+| POST   | `/auth/register` | User registration |
+| POST   | `/auth/logout`   | User logout       |
 
 ## ⚙️ Environment Variables
 
 ### Backend (.env)
+
 ```env
 DATABASE_URL=your_libsql_database_url
 SECRET_KEY=your_jwt_secret_key
@@ -192,6 +200,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
 
 ### Frontend (.env.local)
+
 ```env
 VITE_BACKEND_URL=http://localhost:1234
 VITE_API_KEY=your_api_key
@@ -208,6 +217,7 @@ We welcome contributions! Here's how to get started:
 5. **Open a Pull Request**
 
 ### Guidelines
+
 - Do **not** push directly to the main branch
 - Ensure code follows project conventions
 - Write meaningful commit messages
@@ -231,6 +241,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE
 ## 📞 Support & Contact
 
 For questions, issues, or suggestions:
+
 - Open an [Issue](https://github.com/Team-Sabilaw/CivicAccess/issues) on GitHub
 - Contact Team Sabilaw
 - Check the [Wiki](https://github.com/Team-Sabilaw/CivicAccess/wiki) for FAQs
@@ -242,6 +253,7 @@ For questions, issues, or suggestions:
 **Status:** Active Development
 
 - **Contact Team Sabilaw:**
+
 1. Akinrinde Ademola Victor (GitHub: @Ademsbabyy)
 2. Oluwapelumi Oluwafemi Awoyale(GitHub: @femilearnsai)
 3. Dasaolu Samuel(GitHub: @samueldasaolu)
